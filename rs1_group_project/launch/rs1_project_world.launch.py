@@ -126,14 +126,4 @@ def generate_launch_description():
         ),
     ])
 
-    # gazebo_LD = LaunchDescription()
-    # gazebo_LD.add_action(set_turtlebot_model_cmd)
-    # gazebo_LD.add_action(set_turtlebot_model_env_var)
-    # gazebo_LD.add_action(gzserver_cmd)
-    # gazebo_LD.add_action(gzclient_cmd)
-    # gazebo_LD.add_action(robot_state_publisher_cmd)
-    # gazebo_LD.add_action(spawn_turtlebot_cmd)
-    # gazebo_LD.add_action(nav2_cmd)
-
-
     return gazebo_LD
