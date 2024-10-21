@@ -41,15 +41,15 @@ private:
         std::string input;
         while (rclcpp::ok())
         {
-            std::cout << "Type 'stop' to activate the e-stop, or 'resume' to deactivate: ";
+            std::cout << "Type 's' to activate the e-stop, or 'r' to deactivate: ";
             std::cin >> input;
 
-            if (input == "stop")
+            if (input == "s")
             {
                 estop_active_ = true;
                 RCLCPP_INFO(this->get_logger(), "E-Stop activated. Stopping the robot.");
             }
-            else if (input == "resume")
+            else if (input == "r")
             {
                 estop_active_ = false;
                 RCLCPP_INFO(this->get_logger(), "E-Stop deactivated. Resuming normal operation.");
@@ -70,6 +70,7 @@ private:
             stop_msg.linear.x = 0.0;
             stop_msg.angular.z = 0.0;
             cmd_vel_pub_->publish(stop_msg);
+            //RCLCPP_INFO(this->get_logger(), "publishing stop");
         }
     }
 
@@ -91,46 +92,3 @@ int main(int argc, char **argv)
 
 
 
-
-// class eStop : public rclcpp::Node
-// {
-// public:
-//     eStop() : Node("eStop")
-//     {
-//         laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>("/scan", 10, std::bind(&LaserScan::laserCallback, this, std::placeholders::_1)); 
-        
-//     }
-// private:
-//     void laserCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
-//     {
-//         //detects object in front of them
-        
-//     }
-
-//     void
-
-
-//     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
-//     sensor_msgs::msg::LaserScan laserScan_;
-//     bool found_;
-//     unsigned int ct_; //!< Marker Count
-//     int n_;
-//     int count;
-// }
-
-
-// // Calculation function for the total distance function
-// double robot::calculateDistance(const pfms::geometry_msgs::Point& start, const pfms::geometry_msgs::Point& end) {
-//     return std::sqrt(std::pow(end.x - start.x, 2) + std::pow(end.y - start.y, 2));
-// };
-
-
-// int main(int argc, char** argv)
-// {
-//     rclcpp::init(argc, argv);
-//     auto node = std::make_shared<LaserScan>();
-//     rclcpp::spin(node);
-//     rclcpp::shutdown();
- 
-//     return 0;
-// }
