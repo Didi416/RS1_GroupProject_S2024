@@ -1,11 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include "std_msgs/msg/empty.hpp"
-#include <cv_bridge/cv_bridge.h>
-#include <tf2/utils.h> //To use getYaw function from the quaternion of orientation
-#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
-#include "visualization_msgs/msg/marker.hpp"
-#include <opencv2/opencv.hpp>
 #include <vector>
  
 class LaserScan : public rclcpp::Node
@@ -21,16 +16,23 @@ public:
 private:
     void laserCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
     {
+        n_ = 'j';
+        std::cout << "input a command" << std::endl;
+        std::cin >> n_;
+
+        if (n_ == 'j') {
+            std::cout << "n = j, no command given" << std::endl;
+        }
+
+        
         
     }
 
 
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
     sensor_msgs::msg::LaserScan laserScan_;
-    bool found_;
-    unsigned int ct_; //!< Marker Count
-    int n_;
-    int count;
+    char n_;
+
 };
  
 int main(int argc, char** argv)
