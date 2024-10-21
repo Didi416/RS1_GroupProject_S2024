@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(rs1_project)
+project(rs1_group_project)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -18,10 +18,12 @@ find_package(geometry_msgs REQUIRED)
 
 add_executable(jake src/Jake.cpp)
 ament_target_dependencies(jake rclcpp std_msgs sensor_msgs geometry_msgs)
+add_executable(navigation src/navigation.cpp)
+ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
 
 install(TARGETS
   jake
-  DESTINATION lib/${PROJECT_NAME})
+  DESTINATION lib/rs1_group_project)
   
 
 if(BUILD_TESTING)
