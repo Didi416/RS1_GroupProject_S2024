@@ -11,31 +11,80 @@ public:
     {
         laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>("/scan", 10, std::bind(&LaserScan::laserCallback, this, std::placeholders::_1));
         move_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 1);
-        forward.linear.x = 1;
-        backward.linear.x = -1;
-        
+        forward.linear.x = 0.5;
+        backward.linear.x = -0.5;
+        left.angular.z = 0.5;
+        right.angular.z = -0.5;
+        stopped.linear.x = 0;
+        stopped.angular.z = 0;
+        safe = true;
         
     }
 private:
     void laserCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
     {
+        for(int x = 0; x < 30; x++) {
+            if(std::isfinite(msg->ranges.at(x)) && !std::isnan(msg->ranges.at(x))) {
+                std::cout << x << "beans" << msg->ranges.at(x) << std::endl;
+                if (msg->ranges[x] <= 1) {
+                    safe = false;
+                    std::cout << "beans" << msg->ranges[x] << std::endl;
+                    break;
+                }
+                std::cout << "beans safe" << std::endl;
+                safe = true;
+            }
+            
+        }
+        for(int x = 330; x < 360; x++) {
+            if(std::isfinite(msg->ranges.at(x)) && !std::isnan(msg->ranges.at(x))) {
+                std::cout << x << "beans" << msg->ranges.at(x) << std::endl;
+                if (msg->ranges[x] <= 1) {
+                    safe = false;
+                    std::cout << "beans" << msg->ranges[x] << std::endl;
+                    break;
+                }
+                std::cout << "beans safe" << std::endl;
+                safe = true;
+            }
+            
+        }
+        if (!safe) {
+            move_pub->publish(stopped);
+            std::cout << "object detected, unsafe to move forward" << std::endl;
+        }
+        
         std::cout << "input a command" << std::endl;
         std::cin >> n_;
+        move();
 
-        if (n_ == 'j') {
-            std::cout << "n = j, no command given" << std::endl;
+        
+    }
+
+    void move() {
+        if (n_ == 'e') {
+            std::cout << "n = e, stop now!" << std::endl;
+            move_pub->publish(stopped);
         }
         else if (n_ == 'w') {
-            std::cout << "n = w, move forward" << std::endl;
-            move_pub->publish(forward);
+            if (safe) {
+                std::cout << "n = w, move forward" << std::endl;
+                move_pub->publish(forward);
+            }
+            else {
+                std::cout << "unsafe to move forwards" << std::endl;
+                move_pub->publish(stopped);
+            }
+            
         }
-        else if (n_ == 's') {
-            std::cout << "n = s, move backward" << std::endl;
-            move_pub->publish(backward);
+        else if (n_ == 'a') {
+            std::cout << "n = a, move left" << std::endl;
+            move_pub->publish(left);
         }
-
-        
-        
+        else if (n_ == 'd') {
+            std::cout << "n = d, move right" << std::endl;
+            move_pub->publish(right);
+        }
     }
 
 
@@ -43,8 +92,12 @@ private:
     sensor_msgs::msg::LaserScan laserScan_;
      rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr move_pub;
     char n_;
+    geometry_msgs::msg::Twist stopped;
     geometry_msgs::msg::Twist forward;
     geometry_msgs::msg::Twist backward;
+    geometry_msgs::msg::Twist left;
+    geometry_msgs::msg::Twist right;
+    bool safe;
 
 };
  
