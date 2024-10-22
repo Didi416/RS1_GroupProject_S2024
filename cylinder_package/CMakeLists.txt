@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(cylinder)
+project(cylinder_package)
 
 # Find dependencies
 find_package(ament_cmake REQUIRED)
