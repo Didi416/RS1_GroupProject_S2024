@@ -16,13 +16,13 @@ find_package(geometry_msgs REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(jake src/Jake.cpp)
-ament_target_dependencies(jake rclcpp std_msgs sensor_msgs geometry_msgs)
+add_executable(userInput src/userInput.cpp)
+ament_target_dependencies(userInput rclcpp std_msgs sensor_msgs geometry_msgs)
 add_executable(navigation src/navigation.cpp)
 ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
 
 install(TARGETS
-  jake
+  userInput
   DESTINATION lib/rs1_group_project)
   
 
