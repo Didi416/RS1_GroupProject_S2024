@@ -25,6 +25,7 @@ public:
         stop.linear.x = 0;
         safe = true;
         stopped = false;
+        estopped = false;
         
     }
     ~LaserScan()
@@ -38,7 +39,7 @@ public:
 private:
     void laserCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
     {
-        for(int x = 0; x < 30; x++) {
+        for(int x = 0; x < 20; x++) {
             if(std::isfinite(msg->ranges.at(x)) && !std::isnan(msg->ranges.at(x))) {
                 //std::cout << x << "beans" << msg->ranges.at(x) << std::endl;
                 if (msg->ranges[x] <= 1) {
@@ -52,7 +53,7 @@ private:
             
         }
         if (safe) {
-            for(int x = 330; x < 360; x++) {
+            for(int x = 340; x < 360; x++) {
                 if(std::isfinite(msg->ranges.at(x)) && !std::isnan(msg->ranges.at(x))) {
                     //std::cout << x << "beans" << msg->ranges.at(x) << std::endl;
                     if (msg->ranges[x] <= 1) {
@@ -84,27 +85,30 @@ private:
 
             if (n_ == 'e') {
                 std::cout << "n = e, stop now!" << std::endl;
+                estopped = !estopped;
                 move_pub->publish(stop);
             }
-            else if (n_ == 'w') {
-                if (safe) {
-                    std::cout << "n = w, move forward" << std::endl;
-                    move_pub->publish(forward);
+            if (!estopped) {
+                if (n_ == 'w') {
+                    if (safe) {
+                        std::cout << "n = w, move forward" << std::endl;
+                        move_pub->publish(forward);
+                    }
+                    else {
+                        std::cout << "unsafe to move forwards" << std::endl;
+                        move_pub->publish(stop);
+                    }
                 }
-                else {
-                    std::cout << "unsafe to move forwards" << std::endl;
-                    move_pub->publish(stop);
+                else if (n_ == 'a') {
+                    std::cout << "n = a, move left" << std::endl;
+                    move_pub->publish(left);
                 }
-                
+                else if (n_ == 'd') {
+                    std::cout << "n = d, move right" << std::endl;
+                    move_pub->publish(right);
+                }
             }
-            else if (n_ == 'a') {
-                std::cout << "n = a, move left" << std::endl;
-                move_pub->publish(left);
-            }
-            else if (n_ == 'd') {
-                std::cout << "n = d, move right" << std::endl;
-                move_pub->publish(right);
-            }
+            
         }
 
         
@@ -124,6 +128,7 @@ private:
     geometry_msgs::msg::Twist right;
     bool safe;
     bool stopped;
+    bool estopped;
 
 };
  
