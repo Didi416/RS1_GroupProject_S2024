@@ -1,5 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
+#include <sensor_msgs/msg/image.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include "std_msgs/msg/empty.hpp"
 #include <vector>
@@ -14,6 +15,7 @@ public:
     LaserScan() : Node("laser_scan")
     {
         laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>("/scan", 10, std::bind(&LaserScan::laserCallback, this, std::placeholders::_1));
+        img_sub = this->create_subscription<sensor_msgs::msg::Image>("camera/image_raw", 10, std::bind(&LaserScan::imageCallback, this, std::placeholders::_1));
         move_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 1);
 
         user_input_thread_ = std::thread(&LaserScan::move, this);
@@ -78,6 +80,10 @@ private:
         
     }
 
+    void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
+
+    }
+
     void move() {
         while(true) {
             std::cout << "input a command" << std::endl;
@@ -116,6 +122,7 @@ private:
 
 
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr img_sub;
     sensor_msgs::msg::LaserScan laserScan_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr move_pub;
     //rclcpp::TimerBase::SharedPtr timer_; // timer
