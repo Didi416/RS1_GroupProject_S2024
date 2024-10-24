@@ -12,38 +12,56 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
-    pkg_rs1_project = get_package_share_directory('rs1_project')
+    pkg_rs1_project = get_package_share_directory('rs1_group_project')
     pkg_turtlebot3 = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
+    pkg_turtlebot_nav = get_package_share_directory('turtlebot3_navigation2')
 
     world = os.path.join(pkg_rs1_project, 'worlds', 'rs1_project_world.world')
+    nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
+    rviz_config_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'rviz', 'nav2_default_view.rviz')
 
     map_dir = LaunchConfiguration(
         'map',
-        default=os.path.join(
-            get_package_share_directory('turtlebot3_navigation2'),
-            'map',
-            'map.yaml'))
+        default=os.path.join(pkg_rs1_project, 'maps', 'map3.yaml'))
 
     param_file_name = 'waffle_pi.yaml'
     param_dir = LaunchConfiguration(
         'params_file',
-        default=os.path.join(
-            get_package_share_directory('turtlebot3_navigation2'),
-            'param',
-            param_file_name))
-
-    nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
-
-    rviz_config_dir = os.path.join(
-        get_package_share_directory('nav2_bringup'),
-        'rviz',
-        'nav2_default_view.rviz')
+        default=os.path.join(pkg_turtlebot_nav, 'param', param_file_name))
     
     use_sim_time = LaunchConfiguration('use_sim_time', default='true'),
     x_pose = LaunchConfiguration('x_pose', default='-2.0'),
     y_pose = LaunchConfiguration('y_pose', default='2.0'),
     
     gazebo_LD = LaunchDescription([
+        # Nav2 Launch directives
+        DeclareLaunchArgument(
+            'map',
+            default_value=map_dir,
+            description='Full path to map file to load'),
+
+        DeclareLaunchArgument(
+            'params_file',
+            default_value=param_dir,
+            description='Full path to param file to load'),
+
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='true',
+            description='Use simulation (Gazebo) clock if true'),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(nav2_launch_file_dir, 'bringup_launch.py')
+            ),
+            launch_arguments={
+                'map': map_dir,
+                'use_sim_time': use_sim_time,
+                'params_file': param_dir
+            }.items(),
+        ),
+
+        
         # Gazebo Launch directives
         DeclareLaunchArgument(
             'model',
@@ -83,30 +101,6 @@ def generate_launch_description():
             }.items()
         ),
 
-        # Nav2 Launch directives
-        DeclareLaunchArgument(
-            'map',
-            default_value=map_dir,
-            description='Full path to map file to load'),
-
-        DeclareLaunchArgument(
-            'params_file',
-            default_value=param_dir,
-            description='Full path to param file to load'),
-
-        DeclareLaunchArgument(
-            'use_sim_time',
-            default_value='false',
-            description='Use simulation (Gazebo) clock if true'),
-
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([nav2_launch_file_dir, '/bringup_launch.py']),
-            launch_arguments={
-                'map': map_dir,
-                'use_sim_time': use_sim_time,
-                'params_file': param_dir}.items(),
-        ),
-
         # Launch RVIZ Node
         Node(
             package='rviz2',
@@ -117,13 +111,12 @@ def generate_launch_description():
             output='screen'),
         
         # Launch navigation executable node
-        Node(
-            package='rs1_group_project',
-            executable='navigation',
-            name='navigation',
-            output='screen',
-            parameters=[{'param_name': 'param_value'}]  # Optional parameters
-        ),
+        # Node(
+        #     package='rs1_group_project',
+        #     executable='navigation',
+        #     name='navigation',
+        #     output='screen',
+        # ),
     ])
 
     return gazebo_LD
