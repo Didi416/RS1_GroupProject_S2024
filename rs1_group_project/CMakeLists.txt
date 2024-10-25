@@ -11,18 +11,24 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(image_transport REQUIRED)
+find_package(OpenCV REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 add_executable(userInput src/userInput.cpp)
-ament_target_dependencies(userInput rclcpp std_msgs sensor_msgs geometry_msgs)
+ament_target_dependencies(userInput rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV)
 add_executable(navigation src/navigation.cpp)
 ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
+add_executable(detect src/objectDetection.cpp)
+ament_target_dependencies(detect rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV)
 
 install(TARGETS
   userInput
+  detect
   DESTINATION lib/rs1_group_project)
   
 
