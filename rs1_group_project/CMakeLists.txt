@@ -14,13 +14,14 @@ find_package(geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(nav2_msgs REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 add_executable(userInput src/userInput.cpp)
-ament_target_dependencies(userInput rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV)
+ament_target_dependencies(userInput rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge nav2_msgs image_transport OpenCV)
 add_executable(navigation src/navigation.cpp)
 ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
 add_executable(detect src/objectDetection.cpp)

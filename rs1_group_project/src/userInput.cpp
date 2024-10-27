@@ -6,6 +6,8 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include <nav2_msgs/srv/manage_lifecycle_nodes.hpp>
+#include "nav2_msgs/action/navigate_to_pose.hpp"
 
 using namespace std::chrono_literals; // Add this to use ms literal
  
@@ -17,6 +19,8 @@ public:
         laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>("/scan", 10, std::bind(&LaserScan::laserCallback, this, std::placeholders::_1));
         img_sub = this->create_subscription<sensor_msgs::msg::Image>("camera/image_raw", 10, std::bind(&LaserScan::imageCallback, this, std::placeholders::_1));
         move_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 1);
+        // Create a client for managing lifecycle nodes
+        lifecycle_client_ = this->create_client<nav2_msgs::srv::ManageLifecycleNodes>("/lifecycle_manager_navigation/manage_nodes");
 
         user_input_thread_ = std::thread(&LaserScan::move, this);
 
@@ -87,11 +91,13 @@ private:
             std::cin >> n_;
 
             if (n_ == 'e') {
+                stop_navigation_service();
                 std::cout << "n = e, stop now!" << std::endl;
                 estopped = !estopped;
                 move_pub->publish(stop);
             }
             if (!estopped) {
+                stop_navigation_service();
                 if (n_ == 'w') {
                     if (safe) {
                         std::cout << "n = w, move forward" << std::endl;
@@ -114,10 +120,29 @@ private:
         }
     }
 
+    /**
+     * @brief Stops the navigation service
+     */
+    void stop_navigation_service() {
+        auto request = std::make_shared<nav2_msgs::srv::ManageLifecycleNodes::Request>();
+        RCLCPP_INFO(this->get_logger(), "Stopping navigation service...");
+        request->command = 1; // Command to stop the service
+        RCLCPP_INFO(this->get_logger(), "Sending command to stop navigation service...");
+        //Send the command to stop the navigation service
+        auto result_future = lifecycle_client_->async_send_request(request);
+ 
+ 
+        // Send command to deactivate the service
+        request->command = 2; // Command to deactivate the service
+        result_future = lifecycle_client_->async_send_request(request);
+ 
+    }
+
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr img_sub;
     sensor_msgs::msg::LaserScan laserScan_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr move_pub;
+    rclcpp::Client<nav2_msgs::srv::ManageLifecycleNodes>::SharedPtr lifecycle_client_; // Client for lifecycle service
     //rclcpp::TimerBase::SharedPtr timer_; // timer
     std::thread user_input_thread_; // thread to capture user input
     char n_;
