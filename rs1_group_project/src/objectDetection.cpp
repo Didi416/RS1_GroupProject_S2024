@@ -1,5 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
+#include <sensor_msgs/msg/point_cloud2.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
 
@@ -11,6 +12,9 @@ public:
         // Subscriber to the camera image topic
         image_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
             "/camera/image_raw", 10, std::bind(&CameraBinAndDoorwayDetection::imageCallback, this, std::placeholders::_1));
+
+        depth_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
+            "/camera/depth/points", 10, std::bind(&CameraBinAndDoorwayDetection::depthCallback, this, std::placeholders::_1));
     }
 
 private:
@@ -37,6 +41,10 @@ private:
         {
             RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
         }
+    }
+
+    void depthCallback(const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
+
     }
 
     void detectDoorways(cv::Mat& img) {
@@ -165,6 +173,7 @@ private:
 
     // Subscriber to the camera image topic
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr depth_sub_;
 };
 
 int main(int argc, char** argv)
