@@ -52,7 +52,6 @@ private:
                 //std::cout << "beans safe" << std::endl;
                 safe = true;
             }
-            
         }
         if (safe) {
             for(int x = 340; x < 360; x++) {
@@ -75,9 +74,7 @@ private:
                 std::cout << "object detected, unsafe to move forward" << std::endl;
                 stopped = true;
             }
-            
         }
-        
     }
 
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
@@ -114,12 +111,8 @@ private:
                     move_pub->publish(right);
                 }
             }
-            
         }
-
-        
     }
-
 
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr img_sub;
