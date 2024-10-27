@@ -95,9 +95,9 @@ private:
         cv::cvtColor(img, hsv, cv::COLOR_BGR2HSV);
 
 
-       // Define the color range for the green bin (try a wider range)
-        cv::Scalar lower_green(35, 50, 50);   // Adjusted lower bounds for Hue, Saturation, and Value
-        cv::Scalar upper_green(85, 255, 255); // Adjusted upper bounds for Hue, Saturation, and Value
+        // Define the color range for the green bin (try a wider range)
+        cv::Scalar lower_green(55, 150, 0);   // Adjusted lower bounds for Hue, Saturation, and Value
+        cv::Scalar upper_green(65, 255, 50);  // Adjusted upper bounds for Hue, Saturation, and Value
 
 
         // Create a mask for green colors
