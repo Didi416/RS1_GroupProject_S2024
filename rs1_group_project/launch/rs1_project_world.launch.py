@@ -61,7 +61,6 @@ def generate_launch_description():
             }.items(),
         ),
 
-        
         # Gazebo Launch directives
         DeclareLaunchArgument(
             'model',
@@ -110,13 +109,27 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
         
-        # Launch navigation executable node
-        # Node(
+        # Launch executable nodes
+        # Node( # Navigation node
         #     package='rs1_group_project',
         #     executable='navigation',
         #     name='navigation',
         #     output='screen',
         # ),
+
+        Node( # object detection node
+            package='rs1_group_project',
+            executable='detect',
+            name='object_detection',
+            output='screen',
+        ),
+
+        Node( # manual control node
+            package='rs1_group_project',
+            executable='userInput',
+            name='user_input',
+            output='screen',
+        ),
     ])
 
     return gazebo_LD

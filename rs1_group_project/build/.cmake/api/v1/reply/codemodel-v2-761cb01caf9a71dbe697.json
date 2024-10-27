@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-bb4c687f1f8826630482.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "rs1_group_project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "detect::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-detect-Debug-d48228f7b9f6477e69ab.json",
+					"name" : "detect",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "navigation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-navigation-Debug-8db05f91a5dea6558afe.json",
+					"name" : "navigation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rs1_group_project_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rs1_group_project_uninstall-Debug-5fbeee447c2aefc7c9e0.json",
+					"name" : "rs1_group_project_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Debug-11ed16de1acd202da07c.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "userInput::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-userInput-Debug-76ba3461af6046a995fa.json",
+					"name" : "userInput",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build",
+		"source" : "/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
