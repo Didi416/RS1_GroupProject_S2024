@@ -1,0 +1,142 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-4e270a8a157593e38f13.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "rs1_group_project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "detect::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-detect-Debug-03a59dfc28a39574aa26.json",
+					"name" : "detect",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "detect_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-detect_autogen-Debug-ff9bcad79104fef5bff3.json",
+					"name" : "detect_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "detect_copy::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-detect_copy-Debug-d6f09f461498ecc737a6.json",
+					"name" : "detect_copy",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "detect_copy_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-detect_copy_autogen-Debug-a6017357aac0ef0bc154.json",
+					"name" : "detect_copy_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "navigation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-navigation-Debug-09208901195bb8d63d02.json",
+					"name" : "navigation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "navigation_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-navigation_autogen-Debug-c03cdc4b3f5d96f3a1c6.json",
+					"name" : "navigation_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rs1_group_project_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rs1_group_project_uninstall-Debug-5fbeee447c2aefc7c9e0.json",
+					"name" : "rs1_group_project_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Debug-11ed16de1acd202da07c.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "userInput::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-userInput-Debug-59ae8883d64ed48d4a14.json",
+					"name" : "userInput",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "userInput_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-userInput_autogen-Debug-b544b235aaccc90b5373.json",
+					"name" : "userInput_autogen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build",
+		"source" : "/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
