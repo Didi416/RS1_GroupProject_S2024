@@ -108,7 +108,7 @@ private:
         // Check for cylinder-like structure in detected points
         if (detect_cylinder(detected_points, half_circumference, threshold)) {
             read_counter++;
-            if (read_counter == 6 && !detected) {
+            if (read_counter == 15 && !detected) {
                 RCLCPP_INFO(this->get_logger(), "Cylinder detected!");
                 publish_marker(points_in_segment);  // Publish marker at the detected points
                 stop_navigation_service();  // Stop the navigation service
@@ -194,7 +194,7 @@ private:
        // RCLCPP_INFO(this->get_logger(), "Sending new goals to navigate around the cylinder...");
 
         // Cylinder radius (0.3) + additional distance (0.5) = 0.8 radius from the center
-        double radius = 0.8;
+        double radius = 0.9;
 
         // Create an array of 4 goal positions (90-degree intervals around the cylinder)
         std::vector<std::pair<double, double>> goals = {
