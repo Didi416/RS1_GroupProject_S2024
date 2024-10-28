@@ -218,6 +218,8 @@ private:
 
     
 
+    
+
     // Subscriber to the camera image topic
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
     rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr depth_sub_;

@@ -101,9 +101,10 @@ private:
                 move_pub->publish(stop);
             }
             if (!estopped) {
-                stop_navigation_service();
+                //stop_navigation_service();
                 if (n_ == "w") {
                     if (safe) {
+                        stop_navigation_service();
                         std::cout << "n = w, move forward" << std::endl;
                         move_pub->publish(forward);
                     }
@@ -113,10 +114,12 @@ private:
                     }
                 }
                 else if (n_ == "a") {
+                    stop_navigation_service();
                     std::cout << "n = a, move left" << std::endl;
                     move_pub->publish(left);
                 }
                 else if (n_ == "d") {
+                    stop_navigation_service();
                     std::cout << "n = d, move right" << std::endl;
                     move_pub->publish(right);
                 }
@@ -163,6 +166,7 @@ private:
             }
         }
     }
+
 
     void send_goal(double x, double y) {
         // Ensure the client is available
