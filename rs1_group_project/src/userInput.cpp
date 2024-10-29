@@ -102,6 +102,10 @@ private:
 
     void move() {
         while(true) {
+            // if(goal_published && pose_.position == objectGoal){
+            //     object_to_detect.data = 'z';
+            //     flag_pub->publish(object_to_detect);
+            // }
             std::cout << "input a command" << std::endl;
             std::cin >> n_;
 
@@ -136,10 +140,6 @@ private:
                 else if (n_ == "b"){
                     object_to_detect.data = 'b';
                     flag_pub->publish(object_to_detect);
-                    if(pose_.position == objectGoal){
-                        object_to_detect.data = 'z';
-                        flag_pub->publish(object_to_detect);
-                    }
                 }
                 else if (n_ == "q"){
                     object_to_detect.data = 'q';
@@ -251,7 +251,7 @@ private:
     geometry_msgs::msg::Pose pose_;
     geometry_msgs::msg::Point objectGoal;
     std_msgs::msg::Char object_to_detect;
-    bool goal_reached = false;
+    bool goal_published = false;
     bool safe;
     bool stopped;
     bool estopped;

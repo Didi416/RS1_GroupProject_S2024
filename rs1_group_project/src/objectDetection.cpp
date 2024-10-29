@@ -40,6 +40,7 @@ private:
     }
     
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg){
+        rclcpp::sleep_for(std::chrono::seconds(2));
         try
         {
             // Convert ROS image message to OpenCV format
@@ -109,12 +110,13 @@ private:
             float object_distance = 0;
 
             // Calculate the index for the laser scan data
-            int index = static_cast<int>((filtered_scan->angle_min + (x_point * filtered_scan->angle_increment)) / filtered_scan->angle_increment);
+            int index = static_cast<int>((msg->angle_min + (x_point * msg->angle_increment)) / msg->angle_increment);
+            // RCLCPP_INFO(this->get_logger(), "GOAL x_point: %.2f,", x_point);
 
             // Get the distance at that index
-            if (index >= 0 && index < filtered_scan->ranges.size()) {
-                object_distance = filtered_scan->ranges[index];
-                object_angle = filtered_scan->angle_min + index * filtered_scan->angle_increment; // Angle to the bin
+            if (index >= 0 && index < msg->ranges.size()) {
+                object_distance = msg->ranges[index];
+                object_angle = msg->angle_min + index * msg->angle_increment; // Angle to the bin
             }
 
             float x = object_distance * cos(object_angle);
@@ -134,15 +136,15 @@ private:
             marker.pose.position = transformedPoint;
             marker.scale.x = 0.5;  // Diameter of the cylinder
             marker.scale.y = 0.5;  // Diameter of the cylinder
-            marker.scale.z = 0.1;   // Height of the cylinder
-
-            marker.color.r = 0.0;  // Red color
+            marker.scale.z = 0.1;  // Height of the cylinder
+            marker.color.r = 0.0;  // green color
             marker.color.g = 1.0;
             marker.color.b = 0.0;
             marker.color.a = 1.0;     
             markerPub_->publish(marker);
             goalPub_->publish(transformedPoint);
             goal_published = true;
+            // RCLCPP_INFO(this->get_logger(), "GOAL PUBLISHED: %.2f, %.2f", goal_point.x, goal_point.y);
             RCLCPP_INFO(this->get_logger(), "GOAL PUBLISHED: %.2f, %.2f", transformedPoint.x, transformedPoint.y);
         }
     }
@@ -330,6 +332,7 @@ private:
         transformedPoint.x = transformedVecPoint.x();
         transformedPoint.y = transformedVecPoint.y();
         transformedPoint.z = transformedVecPoint.z();
+        // RCLCPP_INFO(this->get_logger(), "GOAL PUBLISHED: %.2f, %.2f", transformedPoint.x, transformedPoint.y);
 
         return transformedPoint; //return transformed point
     }

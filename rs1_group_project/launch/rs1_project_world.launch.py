@@ -117,12 +117,12 @@ def generate_launch_description():
         #     output='screen',
         # ),
 
-        Node( # object detection node
-            package='rs1_group_project',
-            executable='detect',
-            name='object_detection',
-            output='screen',
-        ),
+        # Node( # object detection node
+        #     package='rs1_group_project',
+        #     executable='detect',
+        #     name='object_detection',
+        #     output='screen',
+        # ),
 
         # Node( # manual control node
         #     package='rs1_group_project',
