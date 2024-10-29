@@ -199,10 +199,10 @@ private:
         // Create an array of 4 goal positions (90-degree intervals around the cylinder)
         std::vector<std::pair<double, double>> goals = {
             {map_x, map_y + radius},                // Point 0 (below the cylinder)
-            {map_x - radius, map_y},                // Point 1 (to the right of the cylinder)
+            {map_x + radius, map_y},                // Point 1 (to the right of the cylinder)
             {map_x, map_y - radius},                // Point 2 (above the cylinder)
-            {map_x + radius, map_y},                // Point 3 (to the left of the cylinder)
-            {map_x, map_y - radius}                 // Point 4 (below the cylinder)
+            {map_x - radius, map_y},                // Point 3 (to the left of the cylinder)
+            {map_x, map_y + radius}                 // Point 4 (below the cylinder)
         };
         double distance = std::sqrt(std::pow(goals[goal_number].first - robot_pose_.pose.pose.position.x, 2) + std::pow(goals[goal_number].second -  robot_pose_.pose.pose.position.y, 2));
         // Append the robot's starting position as the last goal
@@ -223,10 +223,12 @@ private:
                 // Send the goal and wait for the result
                 auto end_goal_future = navigate_to_pose_client_->async_send_goal(goal_msg);
                 RCLCPP_INFO(this->get_logger(), "Sending goal %d to the navigation service...", goal_number);
-            }
-            if (goal_number == 6) {
+            if (goal_number == 5) {
                 all_reached = true;
+                RCLCPP_INFO(this->get_logger(), "All goals reached.");
             }
+            }
+
         return;
     }
 
