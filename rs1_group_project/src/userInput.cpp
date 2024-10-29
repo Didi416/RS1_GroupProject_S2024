@@ -3,6 +3,7 @@
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <geometry_msgs/msg/twist.hpp>
+#include <geometry_msgs/msg/point.hpp>
 #include "std_msgs/msg/empty.hpp"
 #include <vector>
 #include <thread>
@@ -18,7 +19,8 @@ public:
     LaserScan() : Node("laser_scan")
     {
         laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>("/scan", 10, std::bind(&LaserScan::laserCallback, this, std::placeholders::_1));
-        img_sub = this->create_subscription<sensor_msgs::msg::Image>("camera/image_raw", 10, std::bind(&LaserScan::imageCallback, this, std::placeholders::_1));
+        goal_sub = this->create_subscription<geometry_msgs::msg::Point>("/goal_point", 10, std::bind(&LaserScan::goalCallback, this, std::placeholders::_1));
+        
         move_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 1);
         // Create a client for managing lifecycle nodes
         lifecycle_client_ = this->create_client<nav2_msgs::srv::ManageLifecycleNodes>("/lifecycle_manager_navigation/manage_nodes");
@@ -85,8 +87,9 @@ private:
         }
     }
 
-    void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
-
+    void goalCallback(const geometry_msgs::msg::Point::SharedPtr msg) {
+        RCLCPP_INFO(this->get_logger(), "GOAL FOUND");
+        send_goal(msg->x, msg->y);
     }
 
     void move() {
@@ -211,6 +214,7 @@ private:
 
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr img_sub;
+    rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr goal_sub;
     sensor_msgs::msg::LaserScan laserScan_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr move_pub;
     rclcpp::Client<nav2_msgs::srv::ManageLifecycleNodes>::SharedPtr lifecycle_client_; // Client for lifecycle service

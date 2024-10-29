@@ -1,14 +1,8 @@
 #include <rclcpp/rclcpp.hpp>
-#include "rclcpp_action/rclcpp_action.hpp"
 #include <sensor_msgs/msg/image.hpp>
-#include <sensor_msgs/msg/point_cloud2.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
-#include <sensor_msgs/point_cloud2_iterator.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
-#include "std_msgs/msg/empty.hpp"
-#include <nav2_msgs/srv/manage_lifecycle_nodes.hpp>
-#include "nav2_msgs/action/navigate_to_pose.hpp"
 #include <geometry_msgs/msg/point.hpp>
 
 class CameraBinAndDoorwayDetection : public rclcpp::Node
@@ -19,17 +13,12 @@ public:
         // Subscriber to the camera image topic
         image_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
             "/camera/image_raw", 10, std::bind(&CameraBinAndDoorwayDetection::imageCallback, this, std::placeholders::_1));
-
-        // depth_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-        //     "/camera/depth/points", 10, std::bind(&CameraBinAndDoorwayDetection::depthCallback, this, std::placeholders::_1));
         
         goalPub_ = this->create_publisher<geometry_msgs::msg::Point>("/goal_point", 1);
         laserPub_ = this->create_publisher<sensor_msgs::msg::LaserScan>("/scan_camera_range", 1);
 
         laser_scan = this->create_subscription<sensor_msgs::msg::LaserScan>(
             "/scan", 10, std::bind(&CameraBinAndDoorwayDetection::laserCallback, this, std::placeholders::_1));
-
-
     }
 
 private:
