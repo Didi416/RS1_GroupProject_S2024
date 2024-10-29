@@ -211,19 +211,6 @@ userInput/fast:
 .PHONY : userInput/fast
 
 #=============================================================================
-# Target rules for targets named navigation
-
-# Build rule for target.
-navigation: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 navigation
-.PHONY : navigation
-
-# fast build rule for target.
-navigation/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/build
-.PHONY : navigation/fast
-
-#=============================================================================
 # Target rules for targets named detect
 
 # Build rule for target.
@@ -261,19 +248,6 @@ userInput_autogen: cmake_check_build_system
 userInput_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput_autogen.dir/build.make CMakeFiles/userInput_autogen.dir/build
 .PHONY : userInput_autogen/fast
-
-#=============================================================================
-# Target rules for targets named navigation_autogen
-
-# Build rule for target.
-navigation_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 navigation_autogen
-.PHONY : navigation_autogen
-
-# fast build rule for target.
-navigation_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation_autogen.dir/build.make CMakeFiles/navigation_autogen.dir/build
-.PHONY : navigation_autogen/fast
 
 #=============================================================================
 # Target rules for targets named detect_autogen
@@ -349,30 +323,6 @@ detect_copy_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/detect_copy_autogen/mocs_compilation.cpp.s
 .PHONY : detect_copy_autogen/mocs_compilation.cpp.s
 
-navigation_autogen/mocs_compilation.o: navigation_autogen/mocs_compilation.cpp.o
-.PHONY : navigation_autogen/mocs_compilation.o
-
-# target to build an object file
-navigation_autogen/mocs_compilation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/navigation_autogen/mocs_compilation.cpp.o
-.PHONY : navigation_autogen/mocs_compilation.cpp.o
-
-navigation_autogen/mocs_compilation.i: navigation_autogen/mocs_compilation.cpp.i
-.PHONY : navigation_autogen/mocs_compilation.i
-
-# target to preprocess a source file
-navigation_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/navigation_autogen/mocs_compilation.cpp.i
-.PHONY : navigation_autogen/mocs_compilation.cpp.i
-
-navigation_autogen/mocs_compilation.s: navigation_autogen/mocs_compilation.cpp.s
-.PHONY : navigation_autogen/mocs_compilation.s
-
-# target to generate assembly for a file
-navigation_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/navigation_autogen/mocs_compilation.cpp.s
-.PHONY : navigation_autogen/mocs_compilation.cpp.s
-
 src/detect_copy.o: src/detect_copy.cpp.o
 .PHONY : src/detect_copy.o
 
@@ -396,30 +346,6 @@ src/detect_copy.s: src/detect_copy.cpp.s
 src/detect_copy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/src/detect_copy.cpp.s
 .PHONY : src/detect_copy.cpp.s
-
-src/navigation.o: src/navigation.cpp.o
-.PHONY : src/navigation.o
-
-# target to build an object file
-src/navigation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/src/navigation.cpp.o
-.PHONY : src/navigation.cpp.o
-
-src/navigation.i: src/navigation.cpp.i
-.PHONY : src/navigation.i
-
-# target to preprocess a source file
-src/navigation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/src/navigation.cpp.i
-.PHONY : src/navigation.cpp.i
-
-src/navigation.s: src/navigation.cpp.s
-.PHONY : src/navigation.s
-
-# target to generate assembly for a file
-src/navigation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/src/navigation.cpp.s
-.PHONY : src/navigation.cpp.s
 
 src/objectDetection.o: src/objectDetection.cpp.o
 .PHONY : src/objectDetection.o
@@ -508,13 +434,11 @@ help:
 	@echo "... test"
 	@echo "... detect_autogen"
 	@echo "... detect_copy_autogen"
-	@echo "... navigation_autogen"
 	@echo "... rs1_group_project_uninstall"
 	@echo "... uninstall"
 	@echo "... userInput_autogen"
 	@echo "... detect"
 	@echo "... detect_copy"
-	@echo "... navigation"
 	@echo "... userInput"
 	@echo "... detect_autogen/mocs_compilation.o"
 	@echo "... detect_autogen/mocs_compilation.i"
@@ -522,15 +446,9 @@ help:
 	@echo "... detect_copy_autogen/mocs_compilation.o"
 	@echo "... detect_copy_autogen/mocs_compilation.i"
 	@echo "... detect_copy_autogen/mocs_compilation.s"
-	@echo "... navigation_autogen/mocs_compilation.o"
-	@echo "... navigation_autogen/mocs_compilation.i"
-	@echo "... navigation_autogen/mocs_compilation.s"
 	@echo "... src/detect_copy.o"
 	@echo "... src/detect_copy.i"
 	@echo "... src/detect_copy.s"
-	@echo "... src/navigation.o"
-	@echo "... src/navigation.i"
-	@echo "... src/navigation.s"
 	@echo "... src/objectDetection.o"
 	@echo "... src/objectDetection.i"
 	@echo "... src/objectDetection.s"

@@ -1,7 +1,6 @@
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/uninstall.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/rs1_group_project_uninstall.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/userInput.dir
-/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/navigation.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/detect.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/detect_copy.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/test.dir
@@ -12,6 +11,5 @@
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/install/local.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/install/strip.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/userInput_autogen.dir
-/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/navigation_autogen.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/detect_autogen.dir
 /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles/detect_copy_autogen.dir

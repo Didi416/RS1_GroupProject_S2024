@@ -4,12 +4,13 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include <geometry_msgs/msg/point.hpp>
-#include "std_msgs/msg/empty.hpp"
+#include "std_msgs/msg/char.hpp"
 #include <vector>
 #include <thread>
 #include <chrono>
 #include <nav2_msgs/srv/manage_lifecycle_nodes.hpp>
 #include "nav2_msgs/action/navigate_to_pose.hpp"
+#include <nav_msgs/msg/odometry.hpp>
 
 using namespace std::chrono_literals; // Add this to use ms literal
  
@@ -20,7 +21,9 @@ public:
     {
         laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>("/scan", 10, std::bind(&LaserScan::laserCallback, this, std::placeholders::_1));
         goal_sub = this->create_subscription<geometry_msgs::msg::Point>("/goal_point", 10, std::bind(&LaserScan::goalCallback, this, std::placeholders::_1));
-        
+        odo_sub = this->create_subscription<nav_msgs::msg::Odometry>(
+            "/odom", 10, std::bind(&LaserScan::odoCallback, this, std::placeholders::_1));
+        flag_pub = this->create_publisher<std_msgs::msg::Char>("/flag", 1);
         move_pub = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 1);
         // Create a client for managing lifecycle nodes
         lifecycle_client_ = this->create_client<nav2_msgs::srv::ManageLifecycleNodes>("/lifecycle_manager_navigation/manage_nodes");
@@ -89,7 +92,12 @@ private:
 
     void goalCallback(const geometry_msgs::msg::Point::SharedPtr msg) {
         RCLCPP_INFO(this->get_logger(), "GOAL FOUND");
+        objectGoal = *msg;
         send_goal(msg->x, msg->y);
+    }
+
+    void odoCallback (const nav_msgs::msg::Odometry::SharedPtr msg){
+        pose_ = msg->pose.pose;
     }
 
     void move() {
@@ -104,7 +112,6 @@ private:
                 move_pub->publish(stop);
             }
             if (!estopped) {
-                //stop_navigation_service();
                 if (n_ == "w") {
                     if (safe) {
                         stop_navigation_service();
@@ -125,6 +132,18 @@ private:
                     stop_navigation_service();
                     std::cout << "n = d, move right" << std::endl;
                     move_pub->publish(right);
+                }
+                else if (n_ == "b"){
+                    object_to_detect.data = 'b';
+                    flag_pub->publish(object_to_detect);
+                    if(pose_.position == objectGoal){
+                        object_to_detect.data = 'z';
+                        flag_pub->publish(object_to_detect);
+                    }
+                }
+                else if (n_ == "q"){
+                    object_to_detect.data = 'q';
+                    flag_pub->publish(object_to_detect);
                 }
                 else if(n_ == "1"){
                     std::cout << "Location 1" << std::endl;
@@ -191,7 +210,7 @@ private:
         goal_msg.pose.pose.orientation.w = 1.0;
         // Send the goal with options
         auto end_goal_future = navigate_to_pose_client_->async_send_goal(goal_msg);
-    
+
     }
 
     /**
@@ -215,6 +234,8 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub;
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr img_sub;
     rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr goal_sub;
+    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odo_sub;
+    rclcpp::Publisher<std_msgs::msg::Char>::SharedPtr flag_pub;
     sensor_msgs::msg::LaserScan laserScan_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr move_pub;
     rclcpp::Client<nav2_msgs::srv::ManageLifecycleNodes>::SharedPtr lifecycle_client_; // Client for lifecycle service
@@ -227,6 +248,10 @@ private:
     geometry_msgs::msg::Twist backward;
     geometry_msgs::msg::Twist left;
     geometry_msgs::msg::Twist right;
+    geometry_msgs::msg::Pose pose_;
+    geometry_msgs::msg::Point objectGoal;
+    std_msgs::msg::Char object_to_detect;
+    bool goal_reached = false;
     bool safe;
     bool stopped;
     bool estopped;

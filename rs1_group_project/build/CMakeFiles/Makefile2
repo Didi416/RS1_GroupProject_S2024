@@ -64,7 +64,6 @@ CMAKE_BINARY_DIR = /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_pr
 
 # The main recursive "all" target.
 all: CMakeFiles/userInput.dir/all
-all: CMakeFiles/navigation.dir/all
 all: CMakeFiles/detect.dir/all
 all: CMakeFiles/detect_copy.dir/all
 .PHONY : all
@@ -77,11 +76,9 @@ preinstall:
 clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/rs1_group_project_uninstall.dir/clean
 clean: CMakeFiles/userInput.dir/clean
-clean: CMakeFiles/navigation.dir/clean
 clean: CMakeFiles/detect.dir/clean
 clean: CMakeFiles/detect_copy.dir/clean
 clean: CMakeFiles/userInput_autogen.dir/clean
-clean: CMakeFiles/navigation_autogen.dir/clean
 clean: CMakeFiles/detect_autogen.dir/clean
 clean: CMakeFiles/detect_copy_autogen.dir/clean
 .PHONY : clean
@@ -145,7 +142,7 @@ CMakeFiles/rs1_group_project_uninstall.dir/clean:
 CMakeFiles/userInput.dir/all: CMakeFiles/userInput_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput.dir/build.make CMakeFiles/userInput.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput.dir/build.make CMakeFiles/userInput.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=13,14,15 "Built target userInput"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=9,10,11 "Built target userInput"
 .PHONY : CMakeFiles/userInput.dir/all
 
 # Build rule for subdir invocation for target.
@@ -163,32 +160,6 @@ userInput: CMakeFiles/userInput.dir/rule
 CMakeFiles/userInput.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput.dir/build.make CMakeFiles/userInput.dir/clean
 .PHONY : CMakeFiles/userInput.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/navigation.dir
-
-# All Build rule for target.
-CMakeFiles/navigation.dir/all: CMakeFiles/navigation_autogen.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=9,10,11 "Built target navigation"
-.PHONY : CMakeFiles/navigation.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/navigation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/navigation.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 0
-.PHONY : CMakeFiles/navigation.dir/rule
-
-# Convenience name for target.
-navigation: CMakeFiles/navigation.dir/rule
-.PHONY : navigation
-
-# clean rule for target.
-CMakeFiles/navigation.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/clean
-.PHONY : CMakeFiles/navigation.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/detect.dir
@@ -249,7 +220,7 @@ CMakeFiles/detect_copy.dir/clean:
 CMakeFiles/userInput_autogen.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput_autogen.dir/build.make CMakeFiles/userInput_autogen.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput_autogen.dir/build.make CMakeFiles/userInput_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=16 "Built target userInput_autogen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=12 "Built target userInput_autogen"
 .PHONY : CMakeFiles/userInput_autogen.dir/all
 
 # Build rule for subdir invocation for target.
@@ -267,32 +238,6 @@ userInput_autogen: CMakeFiles/userInput_autogen.dir/rule
 CMakeFiles/userInput_autogen.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/userInput_autogen.dir/build.make CMakeFiles/userInput_autogen.dir/clean
 .PHONY : CMakeFiles/userInput_autogen.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/navigation_autogen.dir
-
-# All Build rule for target.
-CMakeFiles/navigation_autogen.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation_autogen.dir/build.make CMakeFiles/navigation_autogen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation_autogen.dir/build.make CMakeFiles/navigation_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=12 "Built target navigation_autogen"
-.PHONY : CMakeFiles/navigation_autogen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/navigation_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/navigation_autogen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 0
-.PHONY : CMakeFiles/navigation_autogen.dir/rule
-
-# Convenience name for target.
-navigation_autogen: CMakeFiles/navigation_autogen.dir/rule
-.PHONY : navigation_autogen
-
-# clean rule for target.
-CMakeFiles/navigation_autogen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/navigation_autogen.dir/build.make CMakeFiles/navigation_autogen.dir/clean
-.PHONY : CMakeFiles/navigation_autogen.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/detect_autogen.dir

@@ -9,6 +9,7 @@
 #include <tf2/utils.h>
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
 #include <visualization_msgs/msg/marker.hpp>
+#include "std_msgs/msg/char.hpp"
 
 class CameraBinAndDoorwayDetection : public rclcpp::Node
 {
@@ -28,6 +29,8 @@ public:
 
         odo_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
             "/odom", 10, std::bind(&CameraBinAndDoorwayDetection::odoCallback, this, std::placeholders::_1));
+
+        flag_sub = this->create_subscription<std_msgs::msg::Char>("/flag", 10, std::bind(&CameraBinAndDoorwayDetection::flagCallback, this, std::placeholders::_1));
     }
 
 private:
@@ -35,6 +38,7 @@ private:
     void odoCallback (const nav_msgs::msg::Odometry::SharedPtr msg){
         pose_ = msg->pose.pose;
     }
+    
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg){
         try
         {
@@ -44,10 +48,14 @@ private:
             half_point = msg->width/2;
 
             // Detect bins (e.g., green bins)
-            detectBins(img);
+            if(object_to_detect == 'b'){
+                detectBins(img);
+            }
 
             // Detect doorways using edge detection
-            detectDoorways(img);
+            if(object_to_detect == 'q'){
+                detectDoorways(img);
+            }
 
             // Display the processed image with detected bins and doorways
             cv::imshow("Detected Bins and Doorways", img);
@@ -59,6 +67,10 @@ private:
         }
     }
     
+    void flagCallback(const std_msgs::msg::Char::SharedPtr msg) {
+        object_to_detect = msg->data;
+    }
+
     void laserCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg){
         // Set range of FOV (camera is 62 degrees directly in front of TB3 so 31 degrees either side of 0)
         int left_index = -31;
@@ -90,18 +102,19 @@ private:
         // RCLCPP_INFO(this->get_logger(), "Right: %d", right_index);
 
         laserPub_->publish(*filtered_scan);
+        
 
-        if (objectDetected){
+        if (objectDetected && !goal_published){
             float object_angle = 0;
             float object_distance = 0;
 
             // Calculate the index for the laser scan data
-            int index = static_cast<int>((msg->angle_min + (x_point * msg->angle_increment)) / msg->angle_increment);
+            int index = static_cast<int>((filtered_scan->angle_min + (x_point * filtered_scan->angle_increment)) / filtered_scan->angle_increment);
 
             // Get the distance at that index
-            if (index >= 0 && index < msg->ranges.size()) {
-                object_distance = msg->ranges[index];
-                object_angle = msg->angle_min + index * msg->angle_increment; // Angle to the bin
+            if (index >= 0 && index < filtered_scan->ranges.size()) {
+                object_distance = filtered_scan->ranges[index];
+                object_angle = filtered_scan->angle_min + index * filtered_scan->angle_increment; // Angle to the bin
             }
 
             float x = object_distance * cos(object_angle);
@@ -129,7 +142,8 @@ private:
             marker.color.a = 1.0;     
             markerPub_->publish(marker);
             goalPub_->publish(transformedPoint);
-            RCLCPP_INFO(this->get_logger(), "GOAL PUBLISHED");
+            goal_published = true;
+            RCLCPP_INFO(this->get_logger(), "GOAL PUBLISHED: %.2f, %.2f", transformedPoint.x, transformedPoint.y);
         }
     }
 
@@ -310,7 +324,7 @@ private:
         // lck.unlock(); //unlock data access for other threads
 
         tf2::Transform transform(q,audiPoint); //calculate transform of car pose in global frame
-        tf2::Vector3 conePoint(point.x+3.75, point.y, point.z); //create tf2 data type point to be transformed
+        tf2::Vector3 conePoint(point.x, point.y, point.z); //create tf2 data type point to be transformed
         tf2::Vector3 transformedVecPoint = transform * conePoint; //apply transform to point
         //assign values of x,y,z to geometry_msgs/msg/Point
         transformedPoint.x = transformedVecPoint.x();
@@ -324,13 +338,16 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odo_sub_;
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_scan;
+    rclcpp::Subscription<std_msgs::msg::Char>::SharedPtr flag_sub;
     rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr goalPub_;
     rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr markerPub_;
     rclcpp::Publisher<sensor_msgs::msg::LaserScan>::SharedPtr laserPub_;
     geometry_msgs::msg::Pose pose_;
     float x_total, y_total, x_point, y_point;
     bool objectDetected = false;
+    bool goal_published = false;
     int half_point;  
+    char object_to_detect;
 };
 
 int main(int argc, char** argv)

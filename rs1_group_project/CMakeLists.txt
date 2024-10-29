@@ -33,8 +33,8 @@ set(CMAKE_AUTOMOC ON)
 
 add_executable(userInput src/userInput.cpp)
 ament_target_dependencies(userInput rclcpp rclcpp_action std_msgs sensor_msgs geometry_msgs cv_bridge nav2_msgs image_transport OpenCV)
-add_executable(navigation src/navigation.cpp)
-ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
+# add_executable(navigation src/navigation.cpp)
+# ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
 add_executable(detect src/objectDetection.cpp)
 ament_target_dependencies(detect rclcpp std_msgs sensor_msgs visualization_msgs geometry_msgs nav_msgs tf2 tf2_geometry_msgs cv_bridge image_transport OpenCV)
 
