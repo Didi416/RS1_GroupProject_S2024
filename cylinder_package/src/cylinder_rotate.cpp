@@ -173,8 +173,8 @@ private:
         // Create goal message
         auto goal_msg = nav2_msgs::action::NavigateToPose::Goal();
         goal_msg.pose.header.frame_id = "map";
-        goal_msg.pose.pose.position.x = -4.0;
-        goal_msg.pose.pose.position.y = 1.0;
+        goal_msg.pose.pose.position.x = 4.0;
+        goal_msg.pose.pose.position.y = 2;
         goal_msg.pose.pose.position.z = 0.0;
         goal_msg.pose.pose.orientation.x = 0.0;
         goal_msg.pose.pose.orientation.y = 0.0;
@@ -198,9 +198,9 @@ private:
 
         // Create an array of 4 goal positions (90-degree intervals around the cylinder)
         std::vector<std::pair<double, double>> goals = {
-            {map_x, map_y - radius},                // Point 0 (below the cylinder)
+            {map_x, map_y + radius},                // Point 0 (below the cylinder)
             {map_x - radius, map_y},                // Point 1 (to the right of the cylinder)
-            {map_x, map_y + radius},                // Point 2 (above the cylinder)
+            {map_x, map_y - radius},                // Point 2 (above the cylinder)
             {map_x + radius, map_y},                // Point 3 (to the left of the cylinder)
             {map_x, map_y - radius}                 // Point 4 (below the cylinder)
         };
@@ -224,7 +224,7 @@ private:
                 auto end_goal_future = navigate_to_pose_client_->async_send_goal(goal_msg);
                 RCLCPP_INFO(this->get_logger(), "Sending goal %d to the navigation service...", goal_number);
             }
-            if (goal_number == 5) {
+            if (goal_number == 6) {
                 all_reached = true;
             }
         return;
