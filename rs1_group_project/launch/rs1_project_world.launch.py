@@ -10,16 +10,17 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 def generate_launch_description():
-
+    # get directory paths to necessary packages:
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
     pkg_rs1_project = get_package_share_directory('rs1_group_project')
     pkg_turtlebot3 = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
     pkg_turtlebot_nav = get_package_share_directory('turtlebot3_navigation2')
 
+    # identify paths to requried world, nav2 configuration, rviz configuration files as well as the map and param .yaml files
     world = os.path.join(pkg_rs1_project, 'worlds', 'rs1_project_world.world')
     nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
     rviz_config_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'rviz', 'nav2_default_view.rviz')
-
+    
     map_dir = LaunchConfiguration(
         'map',
         default=os.path.join(pkg_rs1_project, 'maps', 'map3.yaml'))
@@ -29,12 +30,15 @@ def generate_launch_description():
         'params_file',
         default=os.path.join(pkg_turtlebot_nav, 'param', param_file_name))
     
+    # set use_sim_time as well as global coordinates for the turtlebot upon launch
     use_sim_time = LaunchConfiguration('use_sim_time', default='true'),
     x_pose = LaunchConfiguration('x_pose', default='-2.0'),
     y_pose = LaunchConfiguration('y_pose', default='2.0'),
-    
+
+    # Start Launch Description
     gazebo_LD = LaunchDescription([
-        # Nav2 Launch directives
+        # Nav2 Launch directives/arguments
+        # declare/setup arguments for map, param, use_sim_time
         DeclareLaunchArgument(
             'map',
             default_value=map_dir,
@@ -49,7 +53,7 @@ def generate_launch_description():
             'use_sim_time',
             default_value='true',
             description='Use simulation (Gazebo) clock if true'),
-
+        # Include previous launch arguments in Nav2 stack launch description (arguments will be input into the bringup_launch file)
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(nav2_launch_file_dir, 'bringup_launch.py')
@@ -62,14 +66,16 @@ def generate_launch_description():
         ),
 
         # Gazebo Launch directives
+        # Set turtlebot model as waffle_pi
         DeclareLaunchArgument(
             'model',
             default_value='waffle_pi',
             description="TurtleBot3 model"
         ),
+        # Set environmental variable in launch file so don't have to do so in terminal every time
         SetEnvironmentVariable(
             'TURTLEBOT3_MODEL', LaunchConfiguration('model')),
-
+        # Include in launch description the gazebo server and client files as well as the robot_state publisher and spawn turtlebot files
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
@@ -94,13 +100,14 @@ def generate_launch_description():
             PythonLaunchDescriptionSource(
                 os.path.join(pkg_turtlebot3, 'spawn_turtlebot3.launch.py')
             ),
+            # Set turtlebot to specified global coordinates
             launch_arguments={
                 'x_pose': x_pose,
                 'y_pose': y_pose,
             }.items()
         ),
 
-        # Launch RVIZ Node
+        # Launch RVIZ Node with rviz configuration file as argument (not the default file, but .rviz we have in this directory)
         Node(
             package='rviz2',
             executable='rviz2',
@@ -110,7 +117,7 @@ def generate_launch_description():
             output='screen'),
         
         # Launch executable nodes
-        Node( # Navigation node
+        Node( # initial_pose node to publish the robot pose to rviz/nav2 stack to localise and ensure ready to assume navigation upon startup, no manual input required
             package='rs1_group_project',
             executable='initial_pose',
             name='initial_pose_set',
@@ -131,5 +138,5 @@ def generate_launch_description():
         #     output='screen',
         # ),
     ])
-
+    # return the LaunchDescription initialised from line 39 which includes all launch arguments/configurations/descriptions from line 39-140
     return gazebo_LD
