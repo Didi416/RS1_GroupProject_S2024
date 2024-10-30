@@ -35,13 +35,13 @@ public:
         lifecycle_client_ = this->create_client<nav2_msgs::srv::ManageLifecycleNodes>(
             "/lifecycle_manager_navigation/manage_nodes");
 
-            RCLCPP_INFO(this->get_logger(), "Creating action client to navigate to pose");
+        RCLCPP_INFO(this->get_logger(), "Creating action client to navigate to pose");
 
         navigate_to_pose_client_ = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( 
             this,   "navigate_to_pose"  );
             
-       
-        send_goal();
+        // rclcpp::sleep_for(std::chrono::seconds(3));
+        // send_goal();
     }
 
 private:
@@ -65,6 +65,8 @@ private:
     int goal_number = 0;
     double robot_start_x = 0.0;
     double robot_start_y = 0.0;
+
+    int count = 0;
     //nav_msgs::msg::Odometry odom;
 
     /**
@@ -80,6 +82,9 @@ private:
      * @param msg The LaserScan message
      */
     void laser_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
+
+        if(count == 0){RCLCPP_INFO(this->get_logger(), "Sent Goal"); send_goal(); count = -1;};
+
         // Constants
         const float diameter = 0.3;  // Cylinder diameter in meters
         const float radius = diameter / 2.0; // Half diameter
@@ -174,7 +179,7 @@ private:
         auto goal_msg = nav2_msgs::action::NavigateToPose::Goal();
         goal_msg.pose.header.frame_id = "map";
         goal_msg.pose.pose.position.x = 4.0;
-        goal_msg.pose.pose.position.y = 2;
+        goal_msg.pose.pose.position.y = 2.0;
         goal_msg.pose.pose.position.z = 0.0;
         goal_msg.pose.pose.orientation.x = 0.0;
         goal_msg.pose.pose.orientation.y = 0.0;

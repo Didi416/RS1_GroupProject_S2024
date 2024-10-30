@@ -35,11 +35,18 @@ ament_target_dependencies(cylinder_rotate
     std_srvs
     rclcpp_action
 )
+add_executable(initial_pose src/initial_pose.cpp)
+ament_target_dependencies(initial_pose rclcpp geometry_msgs)
 
 # Install executable
 install(TARGETS
   cylinder_rotate
+  initial_pose
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY launch world maps rviz
+  DESTINATION share/cylinder_package
 )
 
 ament_package()
