@@ -127,7 +127,7 @@ private:
 
             geometry_msgs::msg::Point transformedPoint = transformPoint(goal_point);
             visualization_msgs::msg::Marker marker;
-            marker.header.frame_id = "world"; //set markers in global frame
+            marker.header.frame_id = "map"; //set markers in global frame
             marker.header.stamp = this->now();
             marker.ns = "object";
             marker.id = 1;
