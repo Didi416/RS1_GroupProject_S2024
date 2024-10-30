@@ -40,8 +40,9 @@ public:
         navigate_to_pose_client_ = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( 
             this,   "navigate_to_pose"  );
             
-        // rclcpp::sleep_for(std::chrono::seconds(3));
-        // send_goal();
+        rclcpp::sleep_for(std::chrono::seconds(10));
+        RCLCPP_INFO(this->get_logger(), "SENDING GOAL");
+        send_goal();
     }
 
 private:
