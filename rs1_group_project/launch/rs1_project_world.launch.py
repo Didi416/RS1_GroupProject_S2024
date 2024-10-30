@@ -57,7 +57,7 @@ def generate_launch_description():
             launch_arguments={
                 'map': map_dir,
                 'use_sim_time': use_sim_time,
-                'params_file': param_dir
+                'params_file': param_dir,
             }.items(),
         ),
 
@@ -96,7 +96,7 @@ def generate_launch_description():
             ),
             launch_arguments={
                 'x_pose': x_pose,
-                'y_pose': y_pose
+                'y_pose': y_pose,
             }.items()
         ),
 
@@ -110,12 +110,12 @@ def generate_launch_description():
             output='screen'),
         
         # Launch executable nodes
-        # Node( # Navigation node
-        #     package='rs1_group_project',
-        #     executable='navigation',
-        #     name='navigation',
-        #     output='screen',
-        # ),
+        Node( # Navigation node
+            package='rs1_group_project',
+            executable='initial_pose',
+            name='initial_pose_set',
+            output='screen',
+        ),
 
         # Node( # object detection node
         #     package='rs1_group_project',

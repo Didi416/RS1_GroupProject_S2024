@@ -33,13 +33,13 @@ set(CMAKE_AUTOMOC ON)
 
 add_executable(userInput src/userInput.cpp)
 ament_target_dependencies(userInput rclcpp rclcpp_action std_msgs sensor_msgs geometry_msgs cv_bridge nav2_msgs image_transport OpenCV)
-# add_executable(navigation src/navigation.cpp)
-# ament_target_dependencies(navigation rclcpp std_msgs sensor_msgs geometry_msgs)
+add_executable(initial_pose src/initial_pose.cpp)
+ament_target_dependencies(initial_pose rclcpp std_msgs sensor_msgs geometry_msgs)
 add_executable(detect src/objectDetection.cpp)
 ament_target_dependencies(detect rclcpp std_msgs sensor_msgs visualization_msgs geometry_msgs nav_msgs tf2 tf2_geometry_msgs cv_bridge image_transport OpenCV)
 
-add_executable(detect_copy src/detect_copy.cpp)
-ament_target_dependencies(detect_copy rclcpp rclcpp_action std_msgs sensor_msgs geometry_msgs cv_bridge nav2_msgs image_transport OpenCV)
+# add_executable(detect_copy src/detect_copy.cpp)
+# ament_target_dependencies(detect_copy rclcpp rclcpp_action std_msgs sensor_msgs geometry_msgs cv_bridge nav2_msgs image_transport OpenCV)
 
 # add_executable(gui_application src/gui_application.cpp)
 
@@ -50,7 +50,8 @@ ament_target_dependencies(detect_copy rclcpp rclcpp_action std_msgs sensor_msgs 
 install(TARGETS
   userInput
   detect
-  detect_copy
+  initial_pose
+  # detect_copy
   # gui_application
   DESTINATION lib/rs1_group_project)
   

@@ -14,9 +14,9 @@
 			}
 		]
 	},
-	"id" : "detect_copy_autogen::@6890427a1f51a3e7e1df",
+	"id" : "initial_pose_autogen::@6890427a1f51a3e7e1df",
 	"isGeneratorProvided" : true,
-	"name" : "detect_copy_autogen",
+	"name" : "initial_pose_autogen",
 	"paths" : 
 	{
 		"build" : ".",
@@ -44,13 +44,13 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/CMakeFiles/detect_copy_autogen",
+			"path" : "build/CMakeFiles/initial_pose_autogen",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/CMakeFiles/detect_copy_autogen.rule",
+			"path" : "build/CMakeFiles/initial_pose_autogen.rule",
 			"sourceGroupIndex" : 1
 		}
 	],

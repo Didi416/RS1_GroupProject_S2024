@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-006370f0874af6c1f1a4.json",
+					"jsonFile" : "directory-.-Debug-70260e5d5f1b5c5bdf6d.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.12"
@@ -67,16 +67,16 @@
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "detect_copy::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-detect_copy-Debug-9ddeac0fe792e0b05bcf.json",
-					"name" : "detect_copy",
+					"id" : "initial_pose::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-initial_pose-Debug-93a7075c14e0a024d30e.json",
+					"name" : "initial_pose",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "detect_copy_autogen::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-detect_copy_autogen-Debug-a6017357aac0ef0bc154.json",
-					"name" : "detect_copy_autogen",
+					"id" : "initial_pose_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-initial_pose_autogen-Debug-3b56ad54f42e125457a7.json",
+					"name" : "initial_pose_autogen",
 					"projectIndex" : 0
 				},
 				{

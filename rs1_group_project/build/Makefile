@@ -211,6 +211,19 @@ userInput/fast:
 .PHONY : userInput/fast
 
 #=============================================================================
+# Target rules for targets named initial_pose
+
+# Build rule for target.
+initial_pose: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 initial_pose
+.PHONY : initial_pose
+
+# fast build rule for target.
+initial_pose/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/build
+.PHONY : initial_pose/fast
+
+#=============================================================================
 # Target rules for targets named detect
 
 # Build rule for target.
@@ -222,19 +235,6 @@ detect: cmake_check_build_system
 detect/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect.dir/build.make CMakeFiles/detect.dir/build
 .PHONY : detect/fast
-
-#=============================================================================
-# Target rules for targets named detect_copy
-
-# Build rule for target.
-detect_copy: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 detect_copy
-.PHONY : detect_copy
-
-# fast build rule for target.
-detect_copy/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/build
-.PHONY : detect_copy/fast
 
 #=============================================================================
 # Target rules for targets named userInput_autogen
@@ -250,6 +250,19 @@ userInput_autogen/fast:
 .PHONY : userInput_autogen/fast
 
 #=============================================================================
+# Target rules for targets named initial_pose_autogen
+
+# Build rule for target.
+initial_pose_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 initial_pose_autogen
+.PHONY : initial_pose_autogen
+
+# fast build rule for target.
+initial_pose_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose_autogen.dir/build.make CMakeFiles/initial_pose_autogen.dir/build
+.PHONY : initial_pose_autogen/fast
+
+#=============================================================================
 # Target rules for targets named detect_autogen
 
 # Build rule for target.
@@ -261,19 +274,6 @@ detect_autogen: cmake_check_build_system
 detect_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_autogen.dir/build.make CMakeFiles/detect_autogen.dir/build
 .PHONY : detect_autogen/fast
-
-#=============================================================================
-# Target rules for targets named detect_copy_autogen
-
-# Build rule for target.
-detect_copy_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 detect_copy_autogen
-.PHONY : detect_copy_autogen
-
-# fast build rule for target.
-detect_copy_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy_autogen.dir/build.make CMakeFiles/detect_copy_autogen.dir/build
-.PHONY : detect_copy_autogen/fast
 
 detect_autogen/mocs_compilation.o: detect_autogen/mocs_compilation.cpp.o
 .PHONY : detect_autogen/mocs_compilation.o
@@ -299,53 +299,53 @@ detect_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect.dir/build.make CMakeFiles/detect.dir/detect_autogen/mocs_compilation.cpp.s
 .PHONY : detect_autogen/mocs_compilation.cpp.s
 
-detect_copy_autogen/mocs_compilation.o: detect_copy_autogen/mocs_compilation.cpp.o
-.PHONY : detect_copy_autogen/mocs_compilation.o
+initial_pose_autogen/mocs_compilation.o: initial_pose_autogen/mocs_compilation.cpp.o
+.PHONY : initial_pose_autogen/mocs_compilation.o
 
 # target to build an object file
-detect_copy_autogen/mocs_compilation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/detect_copy_autogen/mocs_compilation.cpp.o
-.PHONY : detect_copy_autogen/mocs_compilation.cpp.o
+initial_pose_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/initial_pose_autogen/mocs_compilation.cpp.o
+.PHONY : initial_pose_autogen/mocs_compilation.cpp.o
 
-detect_copy_autogen/mocs_compilation.i: detect_copy_autogen/mocs_compilation.cpp.i
-.PHONY : detect_copy_autogen/mocs_compilation.i
+initial_pose_autogen/mocs_compilation.i: initial_pose_autogen/mocs_compilation.cpp.i
+.PHONY : initial_pose_autogen/mocs_compilation.i
 
 # target to preprocess a source file
-detect_copy_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/detect_copy_autogen/mocs_compilation.cpp.i
-.PHONY : detect_copy_autogen/mocs_compilation.cpp.i
+initial_pose_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/initial_pose_autogen/mocs_compilation.cpp.i
+.PHONY : initial_pose_autogen/mocs_compilation.cpp.i
 
-detect_copy_autogen/mocs_compilation.s: detect_copy_autogen/mocs_compilation.cpp.s
-.PHONY : detect_copy_autogen/mocs_compilation.s
+initial_pose_autogen/mocs_compilation.s: initial_pose_autogen/mocs_compilation.cpp.s
+.PHONY : initial_pose_autogen/mocs_compilation.s
 
 # target to generate assembly for a file
-detect_copy_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/detect_copy_autogen/mocs_compilation.cpp.s
-.PHONY : detect_copy_autogen/mocs_compilation.cpp.s
+initial_pose_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/initial_pose_autogen/mocs_compilation.cpp.s
+.PHONY : initial_pose_autogen/mocs_compilation.cpp.s
 
-src/detect_copy.o: src/detect_copy.cpp.o
-.PHONY : src/detect_copy.o
+src/initial_pose.o: src/initial_pose.cpp.o
+.PHONY : src/initial_pose.o
 
 # target to build an object file
-src/detect_copy.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/src/detect_copy.cpp.o
-.PHONY : src/detect_copy.cpp.o
+src/initial_pose.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/src/initial_pose.cpp.o
+.PHONY : src/initial_pose.cpp.o
 
-src/detect_copy.i: src/detect_copy.cpp.i
-.PHONY : src/detect_copy.i
+src/initial_pose.i: src/initial_pose.cpp.i
+.PHONY : src/initial_pose.i
 
 # target to preprocess a source file
-src/detect_copy.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/src/detect_copy.cpp.i
-.PHONY : src/detect_copy.cpp.i
+src/initial_pose.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/src/initial_pose.cpp.i
+.PHONY : src/initial_pose.cpp.i
 
-src/detect_copy.s: src/detect_copy.cpp.s
-.PHONY : src/detect_copy.s
+src/initial_pose.s: src/initial_pose.cpp.s
+.PHONY : src/initial_pose.s
 
 # target to generate assembly for a file
-src/detect_copy.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/src/detect_copy.cpp.s
-.PHONY : src/detect_copy.cpp.s
+src/initial_pose.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/src/initial_pose.cpp.s
+.PHONY : src/initial_pose.cpp.s
 
 src/objectDetection.o: src/objectDetection.cpp.o
 .PHONY : src/objectDetection.o
@@ -433,22 +433,22 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... detect_autogen"
-	@echo "... detect_copy_autogen"
+	@echo "... initial_pose_autogen"
 	@echo "... rs1_group_project_uninstall"
 	@echo "... uninstall"
 	@echo "... userInput_autogen"
 	@echo "... detect"
-	@echo "... detect_copy"
+	@echo "... initial_pose"
 	@echo "... userInput"
 	@echo "... detect_autogen/mocs_compilation.o"
 	@echo "... detect_autogen/mocs_compilation.i"
 	@echo "... detect_autogen/mocs_compilation.s"
-	@echo "... detect_copy_autogen/mocs_compilation.o"
-	@echo "... detect_copy_autogen/mocs_compilation.i"
-	@echo "... detect_copy_autogen/mocs_compilation.s"
-	@echo "... src/detect_copy.o"
-	@echo "... src/detect_copy.i"
-	@echo "... src/detect_copy.s"
+	@echo "... initial_pose_autogen/mocs_compilation.o"
+	@echo "... initial_pose_autogen/mocs_compilation.i"
+	@echo "... initial_pose_autogen/mocs_compilation.s"
+	@echo "... src/initial_pose.o"
+	@echo "... src/initial_pose.i"
+	@echo "... src/initial_pose.s"
 	@echo "... src/objectDetection.o"
 	@echo "... src/objectDetection.i"
 	@echo "... src/objectDetection.s"

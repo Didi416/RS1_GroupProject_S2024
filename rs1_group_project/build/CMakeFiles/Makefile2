@@ -64,8 +64,8 @@ CMAKE_BINARY_DIR = /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_pr
 
 # The main recursive "all" target.
 all: CMakeFiles/userInput.dir/all
+all: CMakeFiles/initial_pose.dir/all
 all: CMakeFiles/detect.dir/all
-all: CMakeFiles/detect_copy.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -76,11 +76,11 @@ preinstall:
 clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/rs1_group_project_uninstall.dir/clean
 clean: CMakeFiles/userInput.dir/clean
+clean: CMakeFiles/initial_pose.dir/clean
 clean: CMakeFiles/detect.dir/clean
-clean: CMakeFiles/detect_copy.dir/clean
 clean: CMakeFiles/userInput_autogen.dir/clean
+clean: CMakeFiles/initial_pose_autogen.dir/clean
 clean: CMakeFiles/detect_autogen.dir/clean
-clean: CMakeFiles/detect_copy_autogen.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -162,6 +162,32 @@ CMakeFiles/userInput.dir/clean:
 .PHONY : CMakeFiles/userInput.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/initial_pose.dir
+
+# All Build rule for target.
+CMakeFiles/initial_pose.dir/all: CMakeFiles/initial_pose_autogen.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=5,6,7 "Built target initial_pose"
+.PHONY : CMakeFiles/initial_pose.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/initial_pose.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/initial_pose.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 0
+.PHONY : CMakeFiles/initial_pose.dir/rule
+
+# Convenience name for target.
+initial_pose: CMakeFiles/initial_pose.dir/rule
+.PHONY : initial_pose
+
+# clean rule for target.
+CMakeFiles/initial_pose.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose.dir/build.make CMakeFiles/initial_pose.dir/clean
+.PHONY : CMakeFiles/initial_pose.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/detect.dir
 
 # All Build rule for target.
@@ -186,32 +212,6 @@ detect: CMakeFiles/detect.dir/rule
 CMakeFiles/detect.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect.dir/build.make CMakeFiles/detect.dir/clean
 .PHONY : CMakeFiles/detect.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/detect_copy.dir
-
-# All Build rule for target.
-CMakeFiles/detect_copy.dir/all: CMakeFiles/detect_copy_autogen.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=5,6,7 "Built target detect_copy"
-.PHONY : CMakeFiles/detect_copy.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/detect_copy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/detect_copy.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 0
-.PHONY : CMakeFiles/detect_copy.dir/rule
-
-# Convenience name for target.
-detect_copy: CMakeFiles/detect_copy.dir/rule
-.PHONY : detect_copy
-
-# clean rule for target.
-CMakeFiles/detect_copy.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy.dir/build.make CMakeFiles/detect_copy.dir/clean
-.PHONY : CMakeFiles/detect_copy.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/userInput_autogen.dir
@@ -240,6 +240,32 @@ CMakeFiles/userInput_autogen.dir/clean:
 .PHONY : CMakeFiles/userInput_autogen.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/initial_pose_autogen.dir
+
+# All Build rule for target.
+CMakeFiles/initial_pose_autogen.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose_autogen.dir/build.make CMakeFiles/initial_pose_autogen.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose_autogen.dir/build.make CMakeFiles/initial_pose_autogen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=8 "Built target initial_pose_autogen"
+.PHONY : CMakeFiles/initial_pose_autogen.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/initial_pose_autogen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/initial_pose_autogen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 0
+.PHONY : CMakeFiles/initial_pose_autogen.dir/rule
+
+# Convenience name for target.
+initial_pose_autogen: CMakeFiles/initial_pose_autogen.dir/rule
+.PHONY : initial_pose_autogen
+
+# clean rule for target.
+CMakeFiles/initial_pose_autogen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/initial_pose_autogen.dir/build.make CMakeFiles/initial_pose_autogen.dir/clean
+.PHONY : CMakeFiles/initial_pose_autogen.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/detect_autogen.dir
 
 # All Build rule for target.
@@ -264,32 +290,6 @@ detect_autogen: CMakeFiles/detect_autogen.dir/rule
 CMakeFiles/detect_autogen.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_autogen.dir/build.make CMakeFiles/detect_autogen.dir/clean
 .PHONY : CMakeFiles/detect_autogen.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/detect_copy_autogen.dir
-
-# All Build rule for target.
-CMakeFiles/detect_copy_autogen.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy_autogen.dir/build.make CMakeFiles/detect_copy_autogen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy_autogen.dir/build.make CMakeFiles/detect_copy_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles --progress-num=8 "Built target detect_copy_autogen"
-.PHONY : CMakeFiles/detect_copy_autogen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/detect_copy_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/detect_copy_autogen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/ros2_ws/src/RS1_GroupProject_S2024/rs1_group_project/build/CMakeFiles 0
-.PHONY : CMakeFiles/detect_copy_autogen.dir/rule
-
-# Convenience name for target.
-detect_copy_autogen: CMakeFiles/detect_copy_autogen.dir/rule
-.PHONY : detect_copy_autogen
-
-# clean rule for target.
-CMakeFiles/detect_copy_autogen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/detect_copy_autogen.dir/build.make CMakeFiles/detect_copy_autogen.dir/clean
-.PHONY : CMakeFiles/detect_copy_autogen.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
