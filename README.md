@@ -2,10 +2,10 @@
 Robotics Studio 1 Project - Robotic Guide Dog (Spot)
 
 Collaborators:
-Dyandra Prins
-Claire Matthews
-Jake Nockles 
-Angelyn Co
+- Dyandra Prins
+- Claire Matthews
+- Jake Nockles 
+- Angelyn Co
 
 The use of robots as a guide dog is a revolutionary concept to provide visually impaired clients with an accessible and reliable solution when guide dogs are not an option. With the ability to map and localise the environment using various sensors such as cameras, infra-red and laser, a high complexity robot like Boston Dynamics’ Spot can be programmed to improve independence and mobility through everyday life. 
 The development of Spot the Robot Dog integrates simultaneous localisation and mapping algorithms (SLAM) to navigate and react with the environment around it and its client. Spot the Robot Dog will provide the visually impaired community with an alternative solution to the traditional guide dog, therefore increasing accessibility and reliability. This project will provide an opportunity for users to access individual support when they couldn’t before. This includes any circumstances where allergies and physical boundaries have restricted one’s ability to own a guide dog. 
