@@ -17,7 +17,8 @@ ros2 launch rs1_group_project rs1_group_project.launch.py
 And then in two other terminals (with a source bash) run the userInput and objectDetection nodes (executables):
 ```
 ros2 run rs1_group_project userInput
-
+```
+```
 ros2 run rs1_group_project detect
 ```
 Turtlebot can now be viewed in both Gazebo and RVIZ already localised in position. Use the userInput node to manually navigate, using w, a, and d, around the environment and/or use the number 1-10 to navigate to a predefined location on the map. The path the robot will take can be visualised using the Global Planner topic in RVIZ. 
